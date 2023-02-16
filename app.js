@@ -15,12 +15,12 @@ birds.push([5, "five bird"]);
 
 
 // get all
-app.get("/", (req, res) => {
+app.get("/birds", (req, res) => {
     res.send(birds)
 })
 
 // get
-app.get("/:id", (req, res) => {
+app.get("/birds/:id", (req, res) => {
     const id = req.params.id
     birds.forEach(bird => {
         if(bird[0] == id ){
@@ -31,7 +31,7 @@ app.get("/:id", (req, res) => {
 })
 
 // get by name
-app.get("/name/:name", (req, res) => {
+app.get("/birds/name/:name", (req, res) => {
     const name = req.params.name
     birds.forEach(bird => {
         if(bird[1] == name){
