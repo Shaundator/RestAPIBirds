@@ -31,7 +31,7 @@ app.get("/birds/:id", (req, res) => {
 })
 
 // get by name
-app.get("/birds/name/:name", (req, res) => {
+app.get("/birds/findByName/:name", (req, res) => {
     const name = req.params.name
     birds.forEach(bird => {
         if(bird[1] == name){
