@@ -40,3 +40,21 @@ app.get("/birds/findByName/:name", (req, res) => {
         }
     }) 
 })
+
+// post
+app.get("/birds/:bird", (req, res) => {
+
+})
+// put
+app.get("/birds/:bird", (req, res) => {
+
+})
+// patch
+app.get("/birds/:bird", (req, res) => {
+
+})
+
+// delete
+app.get("/birds/:id", (req, res) => {
+    
+})
