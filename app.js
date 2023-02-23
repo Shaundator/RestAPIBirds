@@ -8,8 +8,8 @@ app.use(bodyParser.json())
 
 app.listen(8080);
 
-// simulating some database2
 
+// simulating some database
 const birds = [
     {id: 1, name: "First Bird"},
     {id: 2, name: "Second Bird"},
@@ -45,31 +45,36 @@ app.post("/birds", (req, res) => {
     res.send(postBird)
 })
 
-// put
+
+// put : if certain value is not given, make result null
 app.put("/birds/:id", (req, res) => {
-    const oldBird = birds.find((bird) => bird.id === req.params.id)
-    if(oldBird) {
-        res.status(404).send("No birds here")
-    } else {
-        const birdIndex = birds.findIndex((bird) => bird.id == req.params.id);
-        birds[birdIndex] = req.body
-        res.send(birds[birdIndex])
+    const birdId = parseInt(req.params.id)
+    const oldBirdIndex = birds.findIndex((bird) => bird.id == birdId)
+    const newBird = req.body
+    if(newBird.name !== null ){
+        birds[oldBirdIndex].name = newBird.name
     }
+    console.log('bird changed')
+    res.send(birds[oldBirdIndex])
 })
 
-app.patch("/birds/:id/:field", (req, res) => {
-    const oldBird = birds.find((bird) => bird.id == req.params.id)
-    if(oldBird) {
-        res.status(404).send("No birds here")
-    } else {
-        res.send("to be made")
+// patch : 
+app.patch("/birds/:id", (req, res) => {
+    const birdId = parseInt(req.params.id)
+    const oldBirdIndex = birds.findIndex((bird) => bird.id == birdId)
+    const newBird = req.body
+    if(newBird.name !== null ){
+        birds[oldBirdIndex].name = newBird.name
     }
+    console.log('bird changed')
+    res.send(birds[oldBirdIndex])
 })
+
+
 // delete
 app.delete("/birds/:id", (req, res) => {
     const birdId = parseInt(req.params.id)
     const birdIndex = birds.findIndex((bird) => bird.id === birdId)
-
     if(birdIndex === -1){
         res.status(404).send("No birds here")
     } else {
